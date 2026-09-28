@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labious Phetoane | Senior Technology Product & Strategy Lead</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+
+        .modal-animate {
+            animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-40 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-xs">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Left: Personal Brand Monogram & Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white font-extrabold text-base flex items-center justify-center shadow-md shadow-sky-500/20 tracking-wider">
+                    LP
+                </div>
+                <div class="hidden xs:block">
+                    <h1 class="text-sm font-bold text-slate-900 dark:text-white leading-tight">Labious Phetoane</h1>
+                    <p class="text-[11px] font-medium text-sky-600 dark:text-sky-400">Executive Portfolio</p>
+                </div>
+            </div>
+
+            <!-- Right: Navigation Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Theme Toggle Button -->
+                <button 
+                    id="theme-toggle-btn" 
+                    onclick="toggleTheme()" 
+                    title="Toggle Dark/Light Mode"
+                    class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                >
+                    <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
+                </button>
+
+                <!-- Contact Me Quick Button -->
+                <button 
+                    onclick="openContactModal()" 
+                    class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 px-3.5 py-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                >
+                    <i class="fa-solid fa-envelope text-sky-600 dark:text-sky-400"></i>
+                    <span>Contact</span>
+                </button>
+
+                <!-- Share Profile Button -->
+                <button 
+                    onclick="openShareModal()" 
+                    class="flex items-center gap-2 text-xs sm:text-sm font-semibold bg-sky-600 hover:bg-sky-700 text-white px-4 py-1.5 rounded-lg shadow-sm transition-colors"
+                >
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Share Profile</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-3 sm:px-4 py-6 flex-1 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Left Main Column (Profile Hero, About, Experience, Education, Skills, Certifications) -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+                    <!-- Banner Graphic -->
+                    <div class="h-36 sm:h-44 bg-gradient-to-r from-slate-900 via-sky-950 to-indigo-950 relative">
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.08),transparent)]"></div>
+                        <div class="absolute top-4 right-4 bg-slate-900/60 backdrop-blur-md text-slate-200 text-xs px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="font-medium text-[11px]">Available for Leadership Roles</span>
+                        </div>
+                    </div>
+
+                    <!-- Avatar & Details -->
+                    <div class="px-5 pb-6 pt-0 relative">
+                        <div class="relative -mt-16 sm:-mt-20 mb-3 flex justify-between items-end">
+                            <!-- Profile Picture with Fallback -->
+                            <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl border-4 border-white dark:border-slate-800 bg-white dark:bg-slate-800 shadow-md relative overflow-hidden shrink-0">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D4D35AQEx0KkPaUOn_g/profile-framedphoto-shrink_100_100/B4DaCQ4hztI8Ag-/0/1789137133528?e=1791176400&v=beta&t=vpK_PjFxs3n4knVY9ZUiED-i5pw8FaMnq-q9ibV6SrM" 
+                                    alt="Labious Phetoane" 
+                                    class="w-full h-full object-cover"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" 
+                                />
+                                <div class="hidden w-full h-full bg-gradient-to-br from-sky-600 to-indigo-700 text-white font-black text-3xl flex items-center justify-center">
+                                    LP
+                                </div>
+                            </div>
+
+                            <div class="hidden xs:flex gap-2 mb-2">
+                                <button onclick="openContactModal()" class="px-4 py-2 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold rounded-lg transition-colors">
+                                    <i class="fa-solid fa-address-book mr-1.5 text-sky-600"></i>Contact Details
+                                </button>
+                                <button onclick="openShareModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg transition-colors shadow-sm">
+                                    <i class="fa-solid fa-share-nodes mr-1.5"></i>Share Profile
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Name and Titles -->
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Labious Phetoane</h2>
+                                <i class="fa-solid fa-circle-check text-sky-500 text-lg" title="Verified Profile"></i>
+                            </div>
+                            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium mt-1 leading-snug">
+                                Senior Technology Product & Strategy Lead | AI Governance & Multi-Cloud Architecture
+                            </p>
+                            
+                            <div class="mt-3 flex flex-wrap items-center gap-y-1 gap-x-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                                <span><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>South Africa</span>
+                                <span class="hidden sm:inline">•</span>
+                                <a href="mailto:phetoanelabious@gmail.com" class="text-sky-600 dark:text-sky-400 font-medium hover:underline">
+                                    <i class="fa-solid fa-envelope mr-1.5"></i>phetoanelabious@gmail.com
+                                </a>
+                                <span class="hidden sm:inline">•</span>
+                                <a href="tel:+27793438227" class="text-slate-600 dark:text-slate-300 hover:underline">
+                                    <i class="fa-solid fa-phone mr-1.5"></i>+27 79 343 8227
+                                </a>
+                            </div>
+
+                            <!-- Mobile Action Buttons -->
+                            <div class="mt-4 flex gap-2 xs:hidden">
+                                <button onclick="openContactModal()" class="flex-1 py-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg">
+                                    Contact Details
+                                </button>
+                                <button onclick="openShareModal()" class="flex-1 py-2 bg-sky-600 text-white text-xs font-semibold rounded-lg">
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie text-sky-600"></i>
+                        Professional Summary
+                    </h3>
+                    <div class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed space-y-3">
+                        <p>
+                            Senior <strong>Technology Product & Strategy Lead</strong> with over 9 years of enterprise experience driving product lifecycle management (PLM), intelligent automation, and multi-cloud system architecture across GCP, AWS, and Azure. Proven track record of translating C-suite strategic objectives into funding-ready delivery backlogs, re-engineering legacy operations, and executing cross-functional digital transformations.
+                        </p>
+                        <p>
+                            Deep practical literacy in GenAI fundamentals, including LLM architecture, RAG deployment, token window optimization, and AI governance controls, focused on measurable benefits realization and ROI.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-sky-600"></i>
+                        Work Experience
+                    </h3>
+
+                    <div class="space-y-6">
+                        
+                        <!-- Role 1: Secure Citizen -->
+                        <div class="flex items-start gap-3 sm:gap-4 pb-6 border-b border-slate-100 dark:border-slate-700/60 last:border-b-0 last:pb-0">
+                            <div class="shrink-0 mt-0.5">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D4D0BAQFYyNbBlM6VZQ/company-logo_100_100/company-logo_100_100/0/1727249284570/secure_citizen_logo?e=1792022400&v=beta&t=YRr8EFODiq1h5I4uwXo5xBoO9tUj_4U7p30jclx5s4s" 
+                                    alt="Secure Citizen Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-sky-100 dark:bg-slate-700 text-sky-700 dark:text-sky-300 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    SC
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                                    <div>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white">Senior Business Analyst | Product Owner</h4>
+                                        <p class="text-sm font-semibold text-sky-600 dark:text-sky-400">Secure Citizen</p>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2.5 py-1 rounded-full mt-1 sm:mt-0 w-max">
+                                        Sept 2023 – Aug 2025 · South Africa
+                                    </span>
+                                </div>
+                                <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc pl-4">
+                                    <li>Partner directly with CEOs, C-suite executives, and senior stakeholders to align product vision, secure buy-in, and report on business outcomes at a portfolio level.</li>
+                                    <li>Leverage 3+ years of practical AI model literacy (statistical probabilities, token windows, RAG, and LLM architecture) to assess technical feasibility, evaluate ROI, and establish AI governance controls.</li>
+                                    <li>Own product strategy and execution roadmaps, leading senior analysts to structure high-level strategic goals into funding-ready backlogs.</li>
+                                    <li>Deploy cloud applications and manage identity configurations using IAM policies, OAuth permissions, and role-based access controls across GCP and AWS.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Role 2: Space Inch -->
+                        <div class="flex items-start gap-3 sm:gap-4 pb-6 border-b border-slate-100 dark:border-slate-700/60 last:border-b-0 last:pb-0">
+                            <div class="shrink-0 mt-0.5">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D4D0BAQG4Td9cqCUhPQ/company-logo_100_100/B4DZsPTugUIgAY-/0/1765488388536/space_inch_logo?e=1792022400&v=beta&t=flpAcfbMOfKZ7FdxfHupCGRts2aCmZbhD5ucdmTd2_Q" 
+                                    alt="Space Inch Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-indigo-100 dark:bg-slate-700 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    SI
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                                    <div>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white">Senior Business Analyst</h4>
+                                        <p class="text-sm font-semibold text-sky-600 dark:text-sky-400">Space Inch</p>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2.5 py-1 rounded-full mt-1 sm:mt-0 w-max">
+                                        Dec 2022 – Sept 2023 · Hybrid
+                                    </span>
+                                </div>
+                                <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc pl-4">
+                                    <li>Gathered user feedback and system analytics to identify operational bottlenecks and uncover new product opportunities.</li>
+                                    <li>Defined product success metrics (KPIs) to track post-launch performance, achieving a 12% increase in processed throughput and a 20% boost in user engagement.</li>
+                                    <li>Led release management across Agile delivery teams (Jira/Confluence), ensuring zero-defect deployments and predictable delivery rhythms.</li>
+                                    <li>Conducted business process modeling and requirements discovery to bridge technical capabilities with executive stakeholder needs.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Role 3: Relatient -->
+                        <div class="flex items-start gap-3 sm:gap-4 pb-6 border-b border-slate-100 dark:border-slate-700/60 last:border-b-0 last:pb-0">
+                            <div class="shrink-0 mt-0.5">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D4E0BAQGsI_1d14a_pQ/company-logo_100_100/company-logo_100_100/0/1719948888400/relatient_logo?e=1792022400&v=beta&t=yutHjT-HApaOaFm51kf02xVUhQOQjlP0QX420xSoYUA" 
+                                    alt="Relatient Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-emerald-100 dark:bg-slate-700 text-emerald-700 dark:text-emerald-300 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    RL
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                                    <div>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white">Business Analyst</h4>
+                                        <p class="text-sm font-semibold text-sky-600 dark:text-sky-400">Relatient</p>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2.5 py-1 rounded-full mt-1 sm:mt-0 w-max">
+                                        Oct 2020 – Dec 2022 · Remote (US)
+                                    </span>
+                                </div>
+                                <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc pl-4">
+                                    <li>Owned product roadmap and backlog prioritization, aligning delivery schedules with business goals and technical feasibility.</li>
+                                    <li>Overhauled end-to-end SDLC processes, shortening lead times while elevating software release quality.</li>
+                                    <li>Championed Agile best practices to eliminate operational bottlenecks, reduce defect rates, and increase overall team efficiency.</li>
+                                    <li>Led UX/UI collaboration to redesign CRM platform interfaces, significantly reducing end-user friction.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Role 4: ITTHYNK -->
+                        <div class="flex items-start gap-3 sm:gap-4 pb-6 border-b border-slate-100 dark:border-slate-700/60 last:border-b-0 last:pb-0">
+                            <div class="shrink-0 mt-0.5">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/C4D0BAQHZEnq1_WTZnA/company-logo_100_100/company-logo_100_100/0/1631346590392?e=1792022400&v=beta&t=UCkgVBc4XZ4IKWasWMnAsWcS3H0_auRWss3SfQUYp90" 
+                                    alt="ITTHYNK Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-amber-100 dark:bg-slate-700 text-amber-700 dark:text-amber-300 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    IT
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                                    <div>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white">System Process Analyst</h4>
+                                        <p class="text-sm font-semibold text-sky-600 dark:text-sky-400">ITTHYNK</p>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2.5 py-1 rounded-full mt-1 sm:mt-0 w-max">
+                                        Jan 2020 – Nov 2020 · On-site
+                                    </span>
+                                </div>
+                                <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc pl-4">
+                                    <li>Hands-on experience with Azure cloud architecture and GCP virtual environment deployment, managing cloud consumption costs, IAM/OAuth permissions, and vendor SLAs.</li>
+                                    <li>Designed and delivered a cloud-based government system for South African municipalities, successfully improving accessibility across municipal services.</li>
+                                    <li>Led system architecture development on Azure, establishing a robust, scalable technical foundation for the platform.</li>
+                                    <li>Created UI designs and interactive prototypes using Figma, ensuring user experience directly aligned with stakeholder needs and functional requirements.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Role 5: Mercedes-Benz AG -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="shrink-0 mt-0.5">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D4D0BAQFVL_U1lVAuUg/company-logo_100_100/B4DZ8cbt2UI0AI-/0/1782888455906/mercedes_benz_ag_logo?e=1792022400&v=beta&t=1eCsLStOMDTnQLBFImj5WIvyobjlcElDVVJVgL9fHPw" 
+                                    alt="Mercedes-Benz AG Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    MB
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                                    <div>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white">Junior Business Analyst</h4>
+                                        <p class="text-sm font-semibold text-sky-600 dark:text-sky-400">Mercedes-Benz AG</p>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2.5 py-1 rounded-full mt-1 sm:mt-0 w-max">
+                                        Oct 2016 – Dec 2019 · EMEA
+                                    </span>
+                                </div>
+                                <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc pl-4">
+                                    <li>Automated repetitive manual workflows across operations using Robotic Process Automation (RPA), driving down error rates and significantly enhancing reporting accuracy.</li>
+                                    <li>Delivered cross-functional digital transformation initiatives across Finance, Sales, and Marketing functions to streamline workflows and boost overall efficiency.</li>
+                                    <li>Optimized core business processes by identifying operational bottlenecks, gathering user feedback, and deploying scalable digital solutions.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-5 flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-sky-600"></i>
+                        Education
+                    </h3>
+
+                    <div class="space-y-4">
+                        <!-- Unisa -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-sky-50 dark:bg-slate-700/60 text-sky-600 dark:text-sky-400 font-bold flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-university"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">University of South Africa (UNISA)</h4>
+                                <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">Bachelor of Computer Science with Applied Mathematics</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">2025 – 2027</p>
+                            </div>
+                        </div>
+
+                        <hr class="border-slate-100 dark:border-slate-700/60">
+
+                        <!-- Charles Sturt University -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="shrink-0">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D560BAQE4grD6uYwyng/company-logo_100_100/B56ZfD_WmWHUAU-/0/1751339854883/charles_sturt_university_logo?e=1792022400&v=beta&t=FQMEo6YyXqQ8p4e9WQFkeJJXcGi5p9xlX0shp9wawfQ" 
+                                    alt="Charles Sturt University Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-rose-100 dark:bg-slate-700 text-rose-600 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    CSU
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Charles Sturt University</h4>
+                                <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">Higher Education Studies & Computing</p>
+                            </div>
+                        </div>
+
+                        <hr class="border-slate-100 dark:border-slate-700/60">
+
+                        <!-- Regenesys Business School -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="shrink-0">
+                                <img 
+                                    src="https://media.licdn.com/dms/image/v2/D4D0BAQGxJyjNev48qg/company-logo_100_100/B4DZZroa0cGsAU-/0/1745562480604/regenesysbusinessschool_logo?e=1745562480604&v=beta&t=PEuYJ-qjWdoLZXKkFtnNbT9uNgfo-QPZOs-ZOuw-8Ls" 
+                                    alt="Regenesys Business School Logo" 
+                                    class="w-12 h-12 rounded-lg border border-slate-200 dark:border-slate-700 object-contain bg-white p-1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                />
+                                <div class="hidden w-12 h-12 rounded-lg bg-indigo-100 dark:bg-slate-700 text-indigo-600 font-bold flex items-center justify-center text-xs border border-slate-200 dark:border-slate-600">
+                                    RBS
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Regenesys Business School</h4>
+                                <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">Bachelor of Business Administration: Banking</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Completed 2019</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-award text-sky-600"></i>
+                            Skills & Endorsements
+                        </h3>
+                        <span class="text-xs text-slate-400">Click +1 to endorse</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="skills-container">
+                        <!-- Dynamic Skills rendered via JavaScript -->
+                    </div>
+                </section>
+
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-certificate text-sky-600"></i>
+                        Certifications & Accreditation
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                            <i class="fa-solid fa-database text-sky-600 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">SQL Server Management</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Database & Data Architecture</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                            <i class="fa-brands fa-microsoft text-sky-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">Microsoft Azure Cloud Champion</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Cloud Architecture</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                            <i class="fa-solid fa-diagram-project text-indigo-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">Business Analyst Certificate</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Requirements & Agile SDLC</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                            <i class="fa-brands fa-aws text-orange-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">AWS Certified Cloud Practitioner (CCP)</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Cloud Infrastructure</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                            <i class="fa-brands fa-java text-red-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">Oracle Java Developer</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Software Engineering</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                            <i class="fa-solid fa-file-contract text-emerald-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">Business Process Documentation</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">BPMN & Workflow Design</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="space-y-6">
+                
+                <!-- Executive Highlights Card -->
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+                    <h3 class="text-xs font-bold text-sky-600 dark:text-sky-400 mb-4 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i>
+                        Executive Strengths
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="p-2.5 bg-sky-50 dark:bg-slate-700 text-sky-600 dark:text-sky-300 rounded-xl font-black text-base w-10 h-10 flex items-center justify-center shrink-0">
+                                9+
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Years Enterprise Exp.</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Fintech, Automotive, Government & Biometrics.</p>
+                            </div>
+                        </div>
+
+                        <hr class="border-slate-100 dark:border-slate-700">
+
+                        <div class="flex items-start gap-3">
+                            <div class="p-2.5 bg-indigo-50 dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 rounded-xl font-black text-sm w-10 h-10 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-cloud"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Multi-Cloud Strategy</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">GCP, AWS, and Azure identity & IAM governance.</p>
+                            </div>
+                        </div>
+
+                        <hr class="border-slate-100 dark:border-slate-700">
+
+                        <div class="flex items-start gap-3">
+                            <div class="p-2.5 bg-purple-50 dark:bg-slate-700 text-purple-600 dark:text-purple-300 rounded-xl font-black text-sm w-10 h-10 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">GenAI & LLM Architecture</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Token windows, RAG, and AI governance controls.</p>
+                            </div>
+                        </div>
+
+                        <hr class="border-slate-100 dark:border-slate-700">
+
+                        <div class="flex items-start gap-3">
+                            <div class="p-2.5 bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-300 rounded-xl font-black text-sm w-10 h-10 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-diagram-next"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">PLM & Product Strategy</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Translating C-suite goals into funding-ready backlogs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Contact & Details Card -->
+                <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+                    <h3 class="text-xs font-bold text-sky-600 dark:text-sky-400 mb-4 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-address-card"></i>
+                        Direct Contact
+                    </h3>
+
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-phone text-sky-600 w-4 text-center"></i>
+                            <span>+27 79 343 8227</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-envelope text-sky-600 w-4 text-center"></i>
+                            <a href="mailto:phetoanelabious@gmail.com" class="hover:underline text-sky-600 dark:text-sky-400 font-medium">phetoanelabious@gmail.com</a>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-location-dot text-sky-600 w-4 text-center"></i>
+                            <span>South Africa</span>
+                        </div>
+
+                        <hr class="border-slate-100 dark:border-slate-700 my-2">
+
+                        <h4 class="font-bold text-xs text-slate-900 dark:text-white pt-1">Languages</h4>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs">English (Fluent)</span>
+                            <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs">Setswana (Native)</span>
+                            <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs">Afrikaans</span>
+                            <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 rounded-lg text-xs">Zulu</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <div class="text-center text-xs text-slate-400 dark:text-slate-500 py-2">
+                    <p>© 2026 Labious Phetoane · Executive Portfolio</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <div id="contact-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative modal-animate">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white font-black text-lg flex items-center justify-center shrink-0">
+                    LP
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Labious Phetoane</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Senior Technology Product & Strategy Lead</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-sm">
+                <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200 dark:border-slate-600 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-sky-600 text-lg"></i>
+                        <div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">Email Address</p>
+                            <p class="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm">phetoanelabious@gmail.com</p>
+                        </div>
+                    </div>
+                    <button onclick="copyToClipboard('phetoanelabious@gmail.com', 'Email copied!')" class="text-xs bg-white dark:bg-slate-600 border border-slate-200 dark:border-slate-500 px-2.5 py-1 rounded-lg hover:bg-slate-100 font-medium">
+                        Copy
+                    </button>
+                </div>
+
+                <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200 dark:border-slate-600 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-emerald-600 text-lg"></i>
+                        <div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">Phone / WhatsApp</p>
+                            <p class="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm">+27 79 343 8227</p>
+                        </div>
+                    </div>
+                    <button onclick="copyToClipboard('+27793438227', 'Phone copied!')" class="text-xs bg-white dark:bg-slate-600 border border-slate-200 dark:border-slate-500 px-2.5 py-1 rounded-lg hover:bg-slate-100 font-medium">
+                        Copy
+                    </button>
+                </div>
+
+                <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200 dark:border-slate-600 flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot text-indigo-500 text-lg"></i>
+                    <div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">Location</p>
+                        <p class="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm">South Africa</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast notification for modal copy alert -->
+            <div id="contact-toast" class="hidden mt-4 p-2 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 text-xs text-center rounded-lg font-medium">
+                Copied to clipboard!
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeContactModal()" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="share-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative modal-animate">
+            <button onclick="closeShareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-slate-700 text-sky-600 dark:text-sky-400 text-lg flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Share Executive Profile</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Share Labious Phetoane's profile link</p>
+                </div>
+            </div>
+
+            <!-- Copyable URL field -->
+            <div class="space-y-3">
+                <label class="text-xs font-semibold text-slate-700 dark:text-slate-300">Profile URL</label>
+                <div class="flex items-center gap-2">
+                    <input 
+                        type="text" 
+                        id="share-url-input" 
+                        readonly 
+                        class="w-full text-xs p-2.5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-slate-200 focus:outline-none"
+                    />
+                    <button 
+                        onclick="copyShareUrl()" 
+                        class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shrink-0 transition-colors"
+                    >
+                        Copy Link
+                    </button>
+                </div>
+
+                <!-- Toast feedback for URL copy -->
+                <div id="share-toast" class="hidden p-2 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 text-xs text-center rounded-lg font-medium">
+                    <i class="fa-solid fa-circle-check mr-1"></i> Link copied to clipboard!
+                </div>
+
+                <!-- Social & Channels Direct Trigger Grid -->
+                <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 pt-2">Or Share Directly Via:</p>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <!-- Email Trigger -->
+                    <button 
+                        onclick="shareViaEmail()" 
+                        class="flex items-center justify-center gap-2 p-2.5 bg-slate-50 dark:bg-slate-700/60 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors"
+                    >
+                        <i class="fa-solid fa-envelope text-red-500 text-base"></i>
+                        <span>Email</span>
+                    </button>
+
+                    <!-- WhatsApp Trigger -->
+                    <button 
+                        onclick="shareViaWhatsApp()" 
+                        class="flex items-center justify-center gap-2 p-2.5 bg-slate-50 dark:bg-slate-700/60 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors"
+                    >
+                        <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i>
+                        <span>WhatsApp</span>
+                    </button>
+
+                    <!-- LinkedIn Trigger -->
+                    <button 
+                        onclick="shareViaLinkedIn()" 
+                        class="flex items-center justify-center gap-2 p-2.5 bg-slate-50 dark:bg-slate-700/60 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors"
+                    >
+                        <i class="fa-brands fa-linkedin text-sky-600 text-base"></i>
+                        <span>LinkedIn</span>
+                    </button>
+
+                    <!-- X / Twitter Trigger -->
+                    <button 
+                        onclick="shareViaTwitter()" 
+                        class="flex items-center justify-center gap-2 p-2.5 bg-slate-50 dark:bg-slate-700/60 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors"
+                    >
+                        <i class="fa-brands fa-x-twitter text-slate-900 dark:text-white text-base"></i>
+                        <span>X / Twitter</span>
+                    </button>
+                </div>
+
+                <!-- Native Device Share Trigger -->
+                <div id="native-share-container" class="pt-2 hidden">
+                    <button 
+                        onclick="triggerNativeShare()" 
+                        class="w-full py-2.5 border border-sky-600 text-sky-600 dark:text-sky-400 font-semibold rounded-xl text-xs hover:bg-sky-50 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2"
+                    >
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <span>Use Native Phone Share Sheet</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeShareModal()" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const skillsData = [
+            { id: 'skill-1', name: 'AI Governance & LLM Architecture', count: 18 },
+            { id: 'skill-2', name: 'Multi-Cloud Strategy (GCP / AWS / Azure)', count: 24 },
+            { id: 'skill-3', name: 'Product Lifecycle Management (PLM)', count: 31 },
+            { id: 'skill-4', name: 'Business Analysis & Agile SDLC', count: 42 },
+            { id: 'skill-5', name: 'Biometric & Identity KYC Systems', count: 15 },
+            { id: 'skill-6', name: 'API Integration & Microservices', count: 22 },
+            { id: 'skill-7', name: 'Data Modeling & SQL Analytics', count: 29 },
+            { id: 'skill-8', name: 'Robotic Process Automation (RPA)', count: 19 }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderSkills();
+            initShareUrl();
+        });
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('executive_profile_theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun text-amber-400 text-base';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                document.getElementById('theme-icon').className = 'fa-solid fa-moon text-base';
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                localStorage.setItem('executive_profile_theme', 'light');
+                document.getElementById('theme-icon').className = 'fa-solid fa-moon text-base';
+            } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                localStorage.setItem('executive_profile_theme', 'dark');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun text-amber-400 text-base';
+            }
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            if (!container) return;
+
+            container.innerHTML = skillsData.map(skill => `
+                <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center justify-between gap-2">
+                    <div class="flex-1 pr-1">
+                        <p class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">${skill.name}</p>
+                        <span class="text-[11px] text-slate-500 dark:text-slate-400"><i class="fa-solid fa-users text-[10px] mr-1"></i><span id="count-${skill.id}">${skill.count}</span> endorsements</span>
+                    </div>
+                    <button 
+                        onclick="endorseSkill('${skill.id}', this)" 
+                        class="shrink-0 text-xs px-2.5 py-1 bg-white dark:bg-slate-600 border border-slate-300 dark:border-slate-500 hover:border-sky-600 hover:text-sky-600 dark:hover:border-sky-400 dark:hover:text-sky-400 font-bold rounded-lg transition-all active:scale-95 flex items-center gap-1 shadow-2xs"
+                        title="Endorse skill"
+                    >
+                        <i class="fa-solid fa-plus text-[10px]"></i>1
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function endorseSkill(id, btnElement) {
+            const skill = skillsData.find(s => s.id === id);
+            if (skill) {
+                skill.count += 1;
+                const countSpan = document.getElementById(`count-${id}`);
+                if (countSpan) {
+                    countSpan.innerText = skill.count;
+                    countSpan.classList.add('text-sky-600', 'font-bold');
+                }
+                btnElement.classList.add('bg-sky-50', 'text-sky-600', 'border-sky-600');
+                btnElement.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> Endorsed';
+                btnElement.disabled = true;
+            }
+        }
+
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.remove('hidden');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
+            document.getElementById('contact-toast').classList.add('hidden');
+        }
+
+        function initShareUrl() {
+            const currentUrl = window.location.href;
+            document.getElementById('share-url-input').value = currentUrl;
+
+            if (navigator.share) {
+                document.getElementById('native-share-container').classList.remove('hidden');
+            }
+        }
+
+        function openShareModal() {
+            document.getElementById('share-modal').classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            document.getElementById('share-modal').classList.add('hidden');
+            document.getElementById('share-toast').classList.add('hidden');
+        }
+
+        function copyShareUrl() {
+            const urlInput = document.getElementById('share-url-input');
+            copyToClipboard(urlInput.value, 'Link copied to clipboard!');
+            
+            const toast = document.getElementById('share-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function shareViaEmail() {
+            const url = encodeURIComponent(window.location.href);
+            const subject = encodeURIComponent('Labious Phetoane - Executive Portfolio');
+            const body = encodeURIComponent(`Check out Labious Phetoane's Senior Technology Product & Strategy Lead profile:\n\n${decodeURIComponent(url)}`);
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+
+        function shareViaWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`Check out Labious Phetoane's Executive Profile: ${decodeURIComponent(url)}`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        function shareViaLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        }
+
+        function shareViaTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out Labious Phetoane - Senior Technology Product & Strategy Lead Profile');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+
+        function triggerNativeShare() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Labious Phetoane | Executive Profile',
+                    text: 'Senior Technology Product & Strategy Lead Portfolio',
+                    url: window.location.href
+                }).catch(err => console.log('Share canceled', err));
+            }
+        }
+
+        function copyToClipboard(text, message) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const toast = document.getElementById('contact-toast');
+                if (toast) {
+                    toast.innerText = message || 'Copied!';
+                    toast.classList.remove('hidden');
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                    }, 2500);
+                }
+            } catch (err) {
+                console.error('Copy failed', err);
+            }
+            document.body.removeChild(textarea);
+        }
+    </script>
+</body>
+</html>
